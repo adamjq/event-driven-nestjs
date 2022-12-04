@@ -1,0 +1,30 @@
+service: email-service
+frameworkVersion: '3'
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-ssm-fetch
+
+custom:
+  serverlessSsmFetch:
+    SENDGRID_API_KEY: '/${self:provider.stage}/sendgrid/apiKey~true'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  architecture: arm64
+  memorySize: 1024
+  timeout: 10
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+
+functions:
+  emailer:
+    handler: src/lambda.handler
+    environment:
+      FROM_MAIL_DOMAIN: '<YOUR_SENDGRID_VERIFIED_EMAIL_DOMAIN>'
+    events:
+      - eventBridge:
+          pattern:
+            detail-type:
+              - payments.InvoicePaid

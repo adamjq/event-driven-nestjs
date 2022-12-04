@@ -1,0 +1,16 @@
+{
+    "version": "0",
+    "id": "c82f1e7d-4b0b-9d75-3f11-89be92935a12",
+    "detail-type": "payments.InvoicePaid",
+    "source": "payments.api",
+    "account": "111111111111",
+    "time": "2022-12-04T11:22:08Z",
+    "region": "us-east-1",
+    "resources": [],
+    "detail": {
+        "user": {
+            "id": 1,
+            "email": "user@gmail.com"
+        }
+    }
+}
