@@ -1,6 +1,6 @@
 # Event-Driven NestJS
 
-The repo contains an example NestJS app running on AWS Lambda with an EventBridge source. The use case is a simple service that emails a customer when when a payment event is received using Twilio Sendgrid as the email delivery service.
+The repo contains an example NestJS app running on AWS Lambda with an EventBridge source. The use case is a simple service that emails a customer when a payment event is received using Twilio Sendgrid as the email delivery service.
 
 ## Architecture
 
