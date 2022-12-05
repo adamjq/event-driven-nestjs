@@ -21,7 +21,7 @@ NestJS Standalone apps can use the NestJS DI system without starting an entire w
 
 4. [Verify an email domain with Sendgrid](https://docs.sendgrid.com/ui/account-and-settings/how-to-set-up-domain-authentication)
 
-5. Update the `.serverless.yml` file with your verified email domain.
+5. Update the `serverless.yml` file with your verified email domain.
 
 ## AWS Deployment
 
