@@ -9,7 +9,11 @@ export class EventService {
 
   constructor(private emailService: EmailService) {}
 
-  public async handleEvent(event: EventBridgeEvent) {
+  /**
+   * Processes an event from AWS EventBridge
+   * @param event
+   */
+  public async process(event: EventBridgeEvent) {
     this.logger.debug(`Handling event ${event['detail-type']}`);
     switch (event['detail-type']) {
       case EventDetailType.InvoicePaidEvent:

@@ -1,9 +1,14 @@
-service: email-service
+service: event-driven-nestjs
 frameworkVersion: '3'
 
 plugins:
-  - serverless-plugin-typescript
   - serverless-ssm-fetch
+
+package:
+  exclude:
+    - './**'
+  include:
+    - 'dist/**' # only package the webpack 'dist' folder
 
 custom:
   serverlessSsmFetch:
@@ -20,9 +25,9 @@ provider:
 
 functions:
   emailer:
-    handler: src/lambda.handler
+    handler: dist/main.handler # the output of webpack. requires 'yarn build'
     environment:
-      FROM_MAIL_DOMAIN: '<YOUR_SENDGRID_VERIFIED_EMAIL_DOMAIN>'
+      FROM_MAIL_DOMAIN: <YOUR_DOMAIN_HERE>
     events:
       - eventBridge:
           pattern:

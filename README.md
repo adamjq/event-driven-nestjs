@@ -1,12 +1,11 @@
 # Event-Driven NestJS
 
-Example NestJS app running on AWS Lambda with EventBridge. The use case is a simple email service
-that responds to payment events to and emails customers. The service uses Twilio Sendgrid as an email delivery service.
+The repo contains an example NestJS app running on AWS Lambda with an EventBridge source. The use case is a simple service that emails a customer when when a payment event is received using Twilio Sendgrid as the email delivery service.
 
-## AWS Lambda
+## AWS Lambda & NestJS
 
 This project uses [NestJS Standalone applications](https://docs.nestjs.com/standalone-applications) with AWS Lambda.
-NestJS Standalone apps let you use the DI system and code organisation of NestJS without starting an entire webserver.
+NestJS Standalone apps can use the NestJS DI system without starting an entire webserver.
 
 ## Setup
 
@@ -25,16 +24,25 @@ NestJS Standalone apps let you use the DI system and code organisation of NestJS
 ```
 export AWS_PROFILE=<YOUR_PROFILE>
 
+# package with webpack
+yarn build
+
 npx serverless deploy --stage dev
 ```
 
+## Webpack
+
+The project uses Webpack to bundle the Typescript for NodeJS. The total bundled deployment size is `1.2mb`.
+
+See: https://docs.nestjs.com/faq/serverless#benchmarks
+
 ## Events
 
-The service reacts to one event: `payments.InvoicePaid`
+The service reacts to one `payments.InvoicePaid` event.
 
-The pattern used is [Event-Carried State Transfer](https://martinfowler.com/articles/201701-event-driven.html) to pass around the relevant information about the User needed to send the email.
+The [Event-Carried State Transfer](https://martinfowler.com/articles/201701-event-driven.html) pattern is used to pass around the relevant information about the User that's needed to send an email.
 
-Example:
+Example event:
 ```json
 {
     "version": "0",
